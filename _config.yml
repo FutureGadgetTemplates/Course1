@@ -1,0 +1,59 @@
+# Site settings
+title: Course Platform
+description: A free course platform built with Jekyll
+baseurl: "/Course1" # the subpath of your site, e.g. /blog - change this to match your deployment path
+url: "" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Sass settings
+sass:
+  style: compressed
+  sass_dir: _sass
+
+# Collections
+collections:
+  courses:
+    output: true
+    permalink: /courses/:slug/
+  modules:
+    output: true
+    permalink: /courses/:path/
+  lessons:
+    output: true
+    permalink: /lessons/:slug/
+  guides:
+    output: true
+    permalink: /guides/:slug/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "courses"
+    values:
+      layout: "course"
+  - scope:
+      path: ""
+      type: "modules"
+    values:
+      layout: "module"
+  - scope:
+      path: ""
+      type: "lessons"
+    values:
+      layout: "lesson"
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md

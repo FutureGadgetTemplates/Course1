@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+{% assign module = site.modules | where: "slug", page.module | first %}
+{% assign course = site.courses | where: "slug", module.course | first %}
+
+<div class="lesson-layout">
+  {% include course-sidebar.html course=course current_lesson=page %}
+
+  <article class="lesson-content">
+    <nav class="breadcrumb">
+      <a href="{{ '/' | relative_url }}">Courses</a>
+      <span class="breadcrumb__sep">/</span>
+      <a href="{{ course.url | relative_url }}">{{ course.title }}</a>
+      <span class="breadcrumb__sep">/</span>
+      <span>{{ module.title }}</span>
+    </nav>
+
+    <header class="lesson-header">
+      <h1>{{ page.title }}</h1>
+    </header>
+
+    {% if page.video %}
+      {% include video.html youtube=page.video %}
+    {% endif %}
+
+    <div class="lesson-body">
+      {{ content }}
+    </div>
+
+    <div class="lesson-complete">
+      <button class="btn btn--secondary mark-complete-btn"
+              data-course="{{ course.slug }}"
+              data-lesson="{{ page.slug }}">
+        Mark as Complete
+      </button>
+    </div>
+
+    {% include course-nav.html course=course current_lesson=page %}
+  </article>
+</div>

@@ -1,0 +1,431 @@
+// Course Header
+.course-header {
+  background: $color-bg-alt;
+  padding: $spacing-2xl 0;
+  margin-bottom: $spacing-2xl;
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+    border-radius: $border-radius;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    margin: 0 0 $spacing-md;
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    color: $color-text-light;
+    margin: 0 0 $spacing-md;
+  }
+
+  &__category {
+    display: inline-block;
+    background: $color-primary;
+    color: white;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+  }
+}
+
+// Course Content
+.course-content {
+  margin-bottom: $spacing-2xl;
+}
+
+// Module Card
+.module-card {
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    margin: 0;
+  }
+
+  &__count {
+    color: $color-text-light;
+    font-size: $font-size-sm;
+  }
+
+  &__description {
+    color: $color-text-light;
+    margin: 0 0 $spacing-md;
+  }
+
+  &__lessons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: $spacing-sm 0;
+      border-top: 1px solid $color-border;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      color: $color-text;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+// Course Start
+.course-start {
+  text-align: center;
+  margin-top: $spacing-2xl;
+}
+
+// Lesson Layout
+.lesson-layout {
+  display: flex;
+  min-height: calc(100vh - 140px);
+}
+
+// Course Sidebar
+.course-sidebar {
+  width: $sidebar-width;
+  background: $color-bg-alt;
+  border-right: 1px solid $color-border;
+  padding: $spacing-lg;
+  overflow-y: auto;
+  flex-shrink: 0;
+
+  @media (max-width: $breakpoint-md) {
+    display: none;
+  }
+
+  &__header {
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-lg;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__title {
+    display: block;
+    font-weight: 600;
+    color: $color-text;
+    text-decoration: none;
+    margin-bottom: $spacing-sm;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+// Course TOC
+.course-toc {
+  &__module {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__module-title {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-text-light;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 $spacing-sm;
+  }
+
+  &__lessons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__lesson {
+    a {
+      display: flex;
+      align-items: center;
+      padding: $spacing-sm 0;
+      color: $color-text;
+      text-decoration: none;
+      font-size: $font-size-sm;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    &.is-active a {
+      color: $color-primary;
+      font-weight: 500;
+    }
+  }
+
+  &__check {
+    width: 18px;
+    height: 18px;
+    border: 2px solid $color-border;
+    border-radius: 50%;
+    margin-right: $spacing-sm;
+    flex-shrink: 0;
+
+    &.is-complete {
+      background: $color-success;
+      border-color: $color-success;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
+// Lesson check (used in module cards)
+.lesson-check {
+  width: 18px;
+  height: 18px;
+  border: 2px solid $color-border;
+  border-radius: 50%;
+  margin-right: $spacing-sm;
+  flex-shrink: 0;
+  display: inline-block;
+
+  &.is-complete {
+    background: $color-success;
+    border-color: $color-success;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      width: 4px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+// Lesson Content
+.lesson-content {
+  flex: 1;
+  padding: $spacing-xl;
+  max-width: calc(100% - #{$sidebar-width});
+  overflow-x: hidden;
+
+  @media (max-width: $breakpoint-md) {
+    max-width: 100%;
+    padding: $spacing-lg;
+  }
+}
+
+.lesson-header h1 {
+  font-size: $font-size-2xl;
+  margin: 0 0 $spacing-lg;
+}
+
+.lesson-body {
+  max-width: 800px;
+
+  h2, h3, h4 {
+    margin-top: $spacing-xl;
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    margin-bottom: $spacing-md;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: $border-radius;
+  }
+
+  pre {
+    background: $color-bg-alt;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    padding: $spacing-md;
+    overflow-x: auto;
+
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  code {
+    font-family: $font-family-mono;
+    background: $color-bg-alt;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+    font-size: 0.9em;
+  }
+}
+
+.lesson-complete {
+  margin: $spacing-2xl 0;
+  padding: $spacing-lg;
+  background: $color-bg-alt;
+  border-radius: $border-radius;
+  text-align: center;
+}
+
+// Course Nav
+.course-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: $spacing-xl;
+  border-top: 1px solid $color-border;
+  margin-top: $spacing-xl;
+
+  &__prev, &__next {
+    max-width: 45%;
+  }
+
+  &__next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+    color: $color-text;
+    padding: $spacing-md;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: $color-primary;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__title {
+    font-weight: 500;
+  }
+}
+
+// Progress Bar
+.progress-bar {
+  background: $color-border;
+  border-radius: $border-radius;
+  height: 8px;
+  position: relative;
+  overflow: hidden;
+  margin-top: $spacing-sm;
+
+  &__fill {
+    background: $color-success;
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+
+  &__text {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    font-size: $font-size-sm;
+    color: $color-text-light;
+  }
+}
+
+// Video Embed
+.video-embed {
+  position: relative;
+  padding-bottom: 56.25%; // 16:9
+  height: 0;
+  overflow: hidden;
+  margin-bottom: $spacing-xl;
+  border-radius: $border-radius;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Module Header
+.module-header {
+  margin-bottom: $spacing-xl;
+
+  h1 {
+    margin: 0 0 $spacing-md;
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    color: $color-text-light;
+    margin: 0;
+  }
+}
+
+// Lesson List
+.lesson-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__item {
+    border-bottom: 1px solid $color-border;
+
+    &:first-child {
+      border-top: 1px solid $color-border;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      padding: $spacing-md 0;
+      color: $color-text;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__title {
+    flex: 1;
+  }
+}

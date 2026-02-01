@@ -1,0 +1,61 @@
+---
+layout: default
+---
+
+{% assign modules = site.modules | where: "course", page.slug | sort: "order" %}
+
+<div class="course-header">
+  <div class="container">
+    {% if page.featured_image %}
+      <img src="{{ page.featured_image | relative_url }}" alt="{{ page.title }}" class="course-header__image">
+    {% endif %}
+    <h1 class="course-header__title">{{ page.title }}</h1>
+    <p class="course-header__description">{{ page.description }}</p>
+    {% if page.category %}
+      <span class="course-header__category">{{ page.category }}</span>
+    {% endif %}
+    {% include progress-bar.html course=page.slug %}
+  </div>
+</div>
+
+<div class="container">
+  <div class="course-content">
+    {{ content }}
+  </div>
+
+  <div class="course-modules">
+    <h2>Course Content</h2>
+    {% for module in modules %}
+      {% assign lessons = site.lessons | where: "module", module.slug | sort: "order" %}
+      <div class="module-card">
+        <div class="module-card__header">
+          <h3 class="module-card__title">{{ module.title }}</h3>
+          <span class="module-card__count">{{ lessons.size }} lessons</span>
+        </div>
+        {% if module.description %}
+          <p class="module-card__description">{{ module.description }}</p>
+        {% endif %}
+        <ul class="module-card__lessons">
+          {% for lesson in lessons %}
+            <li>
+              <a href="{{ lesson.url | relative_url }}" data-lesson="{{ lesson.slug }}">
+                <span class="lesson-check" data-course="{{ page.slug }}" data-lesson="{{ lesson.slug }}"></span>
+                {{ lesson.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% assign first_module = modules | first %}
+  {% if first_module %}
+    {% assign first_lesson = site.lessons | where: "module", first_module.slug | sort: "order" | first %}
+    {% if first_lesson %}
+      <div class="course-start">
+        <a href="{{ first_lesson.url | relative_url }}" class="btn btn--primary">Start Course</a>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>

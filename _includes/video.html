@@ -1,0 +1,19 @@
+{% if include.youtube %}
+<div class="video-embed">
+  <iframe
+    src="https://www.youtube.com/embed/{{ include.youtube }}"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+{% elsif include.vimeo %}
+<div class="video-embed">
+  <iframe
+    src="https://player.vimeo.com/video/{{ include.vimeo }}"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+{% endif %}

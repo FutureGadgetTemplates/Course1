@@ -1,0 +1,55 @@
+---
+layout: default
+title: Courses
+---
+
+<div class="page-title">
+  <h1>Free Courses</h1>
+  <p>Start learning today with our comprehensive course library</p>
+</div>
+
+<div class="container">
+  {% assign courses = site.courses %}
+
+  {% if courses.size > 0 %}
+    <div class="course-grid">
+      {% for course in courses %}
+        {% assign modules = site.modules | where: "course", course.slug %}
+        {% assign lesson_count = 0 %}
+        {% for module in modules %}
+          {% assign module_lessons = site.lessons | where: "module", module.slug %}
+          {% assign lesson_count = lesson_count | plus: module_lessons.size %}
+        {% endfor %}
+
+        <article class="course-card">
+          {% if course.featured_image %}
+            <img src="{{ course.featured_image | relative_url }}" alt="{{ course.title }}" class="course-card__image">
+          {% else %}
+            <div class="course-card__image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+          {% endif %}
+
+          <div class="course-card__body">
+            {% if course.category %}
+              <span class="course-card__category">{{ course.category }}</span>
+            {% endif %}
+
+            <h2 class="course-card__title">
+              <a href="{{ course.url | relative_url }}">{{ course.title }}</a>
+            </h2>
+
+            <p class="course-card__description">{{ course.description | truncate: 120 }}</p>
+
+            <div class="course-card__meta">
+              <span>{{ modules.size }} modules</span>
+              <span>{{ lesson_count }} lessons</span>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>No courses available yet. Check back soon!</p>
+    </div>
+  {% endif %}
+</div>

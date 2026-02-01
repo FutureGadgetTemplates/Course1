@@ -1,0 +1,49 @@
+{% assign course = include.course %}
+{% assign current_lesson = include.current_lesson %}
+
+{% comment %} Build ordered list of all lessons in this course {% endcomment %}
+{% assign modules = site.modules | where: "course", course.slug | sort: "order" %}
+{% assign all_lessons = "" | split: "" %}
+{% for module in modules %}
+  {% assign module_lessons = site.lessons | where: "module", module.slug | sort: "order" %}
+  {% for lesson in module_lessons %}
+    {% assign all_lessons = all_lessons | push: lesson %}
+  {% endfor %}
+{% endfor %}
+
+{% comment %} Find current position and neighbors {% endcomment %}
+{% assign prev_lesson = nil %}
+{% assign next_lesson = nil %}
+{% assign found = false %}
+
+{% for lesson in all_lessons %}
+  {% if found %}
+    {% assign next_lesson = lesson %}
+    {% break %}
+  {% endif %}
+  {% if lesson.slug == current_lesson.slug %}
+    {% assign found = true %}
+  {% else %}
+    {% assign prev_lesson = lesson %}
+  {% endif %}
+{% endfor %}
+
+<nav class="course-nav">
+  <div class="course-nav__prev">
+    {% if prev_lesson %}
+      <a href="{{ prev_lesson.url | relative_url }}" class="course-nav__link">
+        <span class="course-nav__label">Previous</span>
+        <span class="course-nav__title">{{ prev_lesson.title }}</span>
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="course-nav__next">
+    {% if next_lesson %}
+      <a href="{{ next_lesson.url | relative_url }}" class="course-nav__link">
+        <span class="course-nav__label">Next</span>
+        <span class="course-nav__title">{{ next_lesson.title }}</span>
+      </a>
+    {% endif %}
+  </div>
+</nav>

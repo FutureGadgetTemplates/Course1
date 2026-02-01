@@ -1,0 +1,19 @@
+// Rouge syntax highlighting (based on GitHub theme)
+.highlight {
+  background: $color-bg-alt;
+  border-radius: $border-radius;
+
+  .c, .cd, .cm, .c1, .cs { color: #6a737d; } // Comments
+  .k, .kc, .kd, .kn, .kp, .kr, .kt { color: #d73a49; } // Keywords
+  .n, .na, .nb, .nc, .nd, .ne, .nf, .ni, .nl, .nn, .no, .nt, .nv { color: #24292e; } // Names
+  .o, .ow { color: #d73a49; } // Operators
+  .p { color: #24292e; } // Punctuation
+  .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #032f62; } // Strings
+  .m, .mf, .mh, .mi, .mo, .il { color: #005cc5; } // Numbers
+  .gd { color: #b31d28; background: #ffeef0; } // Diff delete
+  .gi { color: #22863a; background: #f0fff4; } // Diff insert
+  .gh { color: #005cc5; font-weight: bold; } // Diff header
+  .gp { color: #6a737d; } // Diff position
+  .gu { color: #6f42c1; font-weight: bold; } // Diff hunk
+  .err { color: #b31d28; background: #ffeef0; } // Error
+}

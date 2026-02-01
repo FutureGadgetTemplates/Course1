@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+{% assign course = site.courses | where: "slug", page.course | first %}
+{% assign lessons = site.lessons | where: "module", page.slug | sort: "order" %}
+
+<div class="container">
+  <nav class="breadcrumb">
+    <a href="{{ '/' | relative_url }}">Courses</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="{{ course.url | relative_url }}">{{ course.title }}</a>
+    <span class="breadcrumb__sep">/</span>
+    <span>{{ page.title }}</span>
+  </nav>
+
+  <div class="module-header">
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="module-header__description">{{ page.description }}</p>
+    {% endif %}
+  </div>
+
+  <div class="module-content">
+    {{ content }}
+  </div>
+
+  <div class="module-lessons">
+    <h2>Lessons in this Module</h2>
+    <ol class="lesson-list">
+      {% for lesson in lessons %}
+        <li class="lesson-list__item">
+          <a href="{{ lesson.url | relative_url }}">
+            <span class="lesson-check" data-course="{{ course.slug }}" data-lesson="{{ lesson.slug }}"></span>
+            <span class="lesson-list__title">{{ lesson.title }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>

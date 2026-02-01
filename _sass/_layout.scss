@@ -1,0 +1,131 @@
+// Reset
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+// Container
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// Header
+.site-header {
+  background: $color-bg;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-md 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.site-logo {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: $color-text;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.site-nav a {
+  color: $color-text-light;
+  text-decoration: none;
+  margin-left: $spacing-lg;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+// Main
+.site-main {
+  min-height: calc(100vh - 140px);
+}
+
+// Footer
+.site-footer {
+  background: $color-bg-alt;
+  border-top: 1px solid $color-border;
+  padding: $spacing-xl 0;
+  text-align: center;
+  color: $color-text-light;
+  font-size: $font-size-sm;
+
+  p {
+    margin: 0;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  font-size: $font-size-base;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: $border-radius;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &--primary {
+    background: $color-primary;
+    color: white;
+
+    &:hover {
+      background: $color-primary-dark;
+    }
+  }
+
+  &--secondary {
+    background: $color-bg-alt;
+    color: $color-text;
+    border: 1px solid $color-border;
+
+    &:hover {
+      background: $color-border;
+    }
+
+    &.is-complete {
+      background: $color-success;
+      color: white;
+      border-color: $color-success;
+    }
+  }
+}
+
+// Breadcrumb
+.breadcrumb {
+  font-size: $font-size-sm;
+  color: $color-text-light;
+  margin-bottom: $spacing-lg;
+
+  a {
+    color: $color-text-light;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__sep {
+    margin: 0 $spacing-sm;
+  }
+}

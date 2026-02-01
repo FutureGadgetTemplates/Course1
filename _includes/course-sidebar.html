@@ -1,0 +1,29 @@
+{% assign course = include.course %}
+{% assign current_lesson = include.current_lesson %}
+{% assign modules = site.modules | where: "course", course.slug | sort: "order" %}
+
+<aside class="course-sidebar">
+  <div class="course-sidebar__header">
+    <a href="{{ course.url | relative_url }}" class="course-sidebar__title">{{ course.title }}</a>
+    {% include progress-bar.html course=course.slug %}
+  </div>
+
+  <nav class="course-toc">
+    {% for module in modules %}
+      {% assign lessons = site.lessons | where: "module", module.slug | sort: "order" %}
+      <div class="course-toc__module">
+        <h3 class="course-toc__module-title">{{ module.title }}</h3>
+        <ul class="course-toc__lessons">
+          {% for lesson in lessons %}
+            <li class="course-toc__lesson {% if current_lesson.slug == lesson.slug %}is-active{% endif %}">
+              <a href="{{ lesson.url | relative_url }}" data-lesson="{{ lesson.slug }}">
+                <span class="course-toc__check" data-course="{{ course.slug }}" data-lesson="{{ lesson.slug }}"></span>
+                {{ lesson.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </nav>
+</aside>
